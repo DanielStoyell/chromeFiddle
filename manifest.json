@@ -15,7 +15,7 @@
 	"content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["extensions/angular.js", "styleChange.js"]
+      "js": ["extensions/angular.js", "scroller.js"]
     }
   ]
 }
