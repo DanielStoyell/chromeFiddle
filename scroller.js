@@ -10,6 +10,7 @@ function scroll(speed){
 }
 
 chrome.extension.onMessage.addListener(function(info, sender){
+  console.log(info.action);
   if(info.action == "start"){
     scroll(info.speed);
   }

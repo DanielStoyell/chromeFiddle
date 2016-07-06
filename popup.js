@@ -10,14 +10,14 @@ app.controller('ScrollController', function($scope) {
     $scope.speed = 0;
     $scope.started = false;
 
-    $scope.scroll = function(){
-      if($scope.started){
-        queryActive({"speed":$scope.speed, "action":"stop"});
-      }
-      else{
+    $scope.scroll = function(state){
+      if(state){
         queryActive({"speed":$scope.speed, "action":"start"});
       }
+      else{
+        queryActive({"speed":$scope.speed, "action":"stop"});
+      }
 
-      $scope.started = !$scope.started;
+      $scope.started = state;
     };
 });
