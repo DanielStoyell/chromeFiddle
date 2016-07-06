@@ -1,7 +1,6 @@
-function queryActive(msg) {
+function sendActive(msg) {
   chrome.tabs.query({active: true}, function(tabs){
-    var id = tabs[0].id;
-    chrome.tabs.sendMessage(id, msg);
+    chrome.tabs.sendMessage(tabs[0].id, msg);
   });
 }
 
@@ -10,12 +9,21 @@ app.controller('ScrollController', function($scope) {
     $scope.speed = 0;
     $scope.started = false;
 
+    //Get currently active scroll
+    chrome.tabs.query({active: true}, function(tabs){
+      chrome.tabs.sendMessage(tabs[0].id, {"type":"startup"}, function(response){
+        $scope.speed = response.speed;
+        $scope.started = response.started;
+        $scope.$apply();
+      });
+    });
+
     $scope.scroll = function(state){
       if(state){
-        queryActive({"speed":$scope.speed, "action":"start"});
+        sendActive({"type":"scroll", "speed":$scope.speed, "action":"start"});
       }
       else{
-        queryActive({"speed":$scope.speed, "action":"stop"});
+        sendActive({"type":"scroll", "speed":$scope.speed, "action":"stop"});
       }
 
       $scope.started = state;
