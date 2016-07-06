@@ -13,6 +13,8 @@ function scroll(num){
     delay = 1;
   }
   else{
+    var direction = num < 0 ? -1 : 1;
+    num = Math.abs(num);
     // Yay for magic numbers!
     //Small delays can't achieve needed speeds, so slowly increase the pixel skips
     //This is kept as small as possible for smooth scrolling
@@ -20,7 +22,7 @@ function scroll(num){
     //Equation that marks an intuitive speed change per step
     var delay = Math.round((300-(num*10))/num);
   }
-  intervalID = setInterval(function(){window.scrollBy(0,pixels);}, delay);
+  intervalID = setInterval(function(){window.scrollBy(0,direction*pixels);}, delay);
 }
 
 chrome.extension.onMessage.addListener(function(info, sender, sendResponse){
