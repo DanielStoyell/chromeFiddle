@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 
-	"name": "First Page Fiddle",
-	"description": "Fiddles with student center",
+	"name": "Scroll",
+	"description": "Automatically scrolls pages",
 	"version": "0.1",
 	"permissions": ["activeTab"],
 
