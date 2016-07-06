@@ -6,3 +6,4 @@ TODO:
 - Check for non-window scrolls
 - Reduce speed conversion fractions for smoother scroll
 - Remove extraneous imports (unused glyphs, etc)
+- Clean up folder organization (and references in files)
