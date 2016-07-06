@@ -7,7 +7,7 @@
 	"permissions": ["activeTab"],
 
 	"browser_action": {
-		"default_icon": "icon.png",
+		"default_icon": "assets/icon.png",
 		"default_title": "Scroll",
 		"default_popup": "popup.html"
 	},
@@ -15,7 +15,7 @@
 	"content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["extensions/angular.js", "scroller.js"]
+      "js": ["extensions/angular.js", "js/scroller.js"]
     }
   ]
 }
