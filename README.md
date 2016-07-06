@@ -1,1 +1,1 @@
-Fiddling with chrome extensions for now. Ideas for actual purpose later.
+Automatic scroller for most web pages. Simply enter the desired speed, 1-10, and hit go. Pause or adjust speed at any time!
