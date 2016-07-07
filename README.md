@@ -6,6 +6,5 @@ TODO:
   
   
 Features for Later:
-- Bounce/Wrap/Stop
 - Control from Keyboard
 - Better pixels/delay equation
