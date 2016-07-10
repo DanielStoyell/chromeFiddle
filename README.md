@@ -4,3 +4,6 @@ TODO:
 - Check for non-window scrolls  
 
 Features for Later:
+- Optimize:
+  - String based state to char
+  - Better pixel/delay equation
