@@ -2,9 +2,12 @@ var intervalID = -1;
 var speed = 0;
 var endConfig = "Continue";
 
+function isStarted(){
+  return intervalID != -1;
+}
+
 function updatePopup(){
-  var started = (intervalID != -1);
-  chrome.runtime.sendMessage({"speed":speed, "endConfig":endConfig, "started":started});
+  chrome.runtime.sendMessage({"speed":speed, "endConfig":endConfig, "started":isStarted()});
 }
 
 function stop(){
@@ -88,6 +91,10 @@ window.onkeyup = function(e) {
   else if (e.code === "NumpadSubtract" || e.code === "Minus"){
     speed = speed === -30 ? speed : speed-1;
     scroll(speed);
+    updatePopup();
+  }
+  else if(e.code === "NumpadEnter"){
+    isStarted() ? stop() : scroll(speed);
     updatePopup();
   }
 };
