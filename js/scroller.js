@@ -78,3 +78,16 @@ chrome.extension.onMessage.addListener(function(info, sender, sendResponse){
       console.log("This should never happen");
   }
 });
+
+window.onkeyup = function(e) {
+  if(e.code === "NumpadAdd" || (e.code === "equal" && e.shiftKey)){
+    speed = speed === 30 ? speed : speed+1;
+    scroll(speed);
+    updatePopup();
+  }
+  else if (e.code === "NumpadSubtract" || e.code === "Minus"){
+    speed = speed === -30 ? speed : speed-1;
+    scroll(speed);
+    updatePopup();
+  }
+};

@@ -6,7 +6,6 @@ function sendActive(msg) {
 
 var app = angular.module('scroll', []);
 app.controller('ScrollController', function($scope) {
-  $scope.open = false;
   $scope.speed = 0;
   $scope.started = false;
   $scope.endConfig = "Continue";
@@ -32,11 +31,8 @@ app.controller('ScrollController', function($scope) {
     $scope.started = state;
   };
 
-  $scope.selectEndConfig = function(config){
-    $scope.endConfig = config;
-    $scope.open = !$scope.open;
-
-    sendActive({"type":"endConfig", "config":config});
+  $scope.selectEndConfig = function(){
+    sendActive({"type":"endConfig", "config":$scope.endConfig});
   };
 
   chrome.runtime.onMessage.addListener(function(info, sender){
