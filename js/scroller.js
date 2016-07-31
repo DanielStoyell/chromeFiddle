@@ -1,6 +1,7 @@
 var intervalID = -1;
 var speed = 0;
 var endConfig = "Continue";
+var shortcutsOn = false;
 
 function isStarted(){
   return intervalID != -1;
@@ -68,7 +69,7 @@ chrome.extension.onMessage.addListener(function(info, sender, sendResponse){
   switch (info.type) {
     case "startup":
       var started = (intervalID != -1);
-      sendResponse({"speed":speed, "started":started, "endConfig":endConfig});
+      sendResponse({"speed":speed, "started":started, "endConfig":endConfig, "shortcut":shortcutsOn});
       break;
     case "scroll":
       speed = info.speed;
@@ -77,24 +78,29 @@ chrome.extension.onMessage.addListener(function(info, sender, sendResponse){
     case "endConfig":
       endConfig = info.config;
       break;
+    case "shortcut":
+      shortcutsOn = info.config;
+      break;
     default:
       console.log("This should never happen");
   }
 });
 
 window.onkeyup = function(e) {
-  if(e.code === "NumpadAdd" || (e.code === "equal" && e.shiftKey)){
-    speed = speed === 30 ? speed : speed+1;
-    scroll(speed);
-    updatePopup();
-  }
-  else if (e.code === "NumpadSubtract" || e.code === "Minus"){
-    speed = speed === -30 ? speed : speed-1;
-    scroll(speed);
-    updatePopup();
-  }
-  else if(e.code === "NumpadEnter"){
-    isStarted() ? stop() : scroll(speed);
-    updatePopup();
+  if(shortcutsOn){
+    if(e.code === "NumpadAdd" || (e.code === "equal" && e.shiftKey)){
+      speed = speed === 30 ? speed : speed+1;
+      scroll(speed);
+      updatePopup();
+    }
+    else if (e.code === "NumpadSubtract" || e.code === "Minus"){
+      speed = speed === -30 ? speed : speed-1;
+      scroll(speed);
+      updatePopup();
+    }
+    else if(e.code === "NumpadEnter"){
+      isStarted() ? stop() : scroll(speed);
+      updatePopup();
+    } 
   }
 };

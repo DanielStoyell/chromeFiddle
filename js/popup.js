@@ -16,6 +16,7 @@ app.controller('ScrollController', function($scope) {
       $scope.speed = info.speed;
       $scope.started = info.started;
       $scope.endConfig = info.endConfig;
+      $scope.shortcuts = info.shortcut;
       $scope.$apply();
     });
   });
@@ -29,6 +30,10 @@ app.controller('ScrollController', function($scope) {
     }
 
     $scope.started = state;
+  };
+
+  $scope.toggleShortcuts = function () {
+    sendActive({"type":"shortcut", "config":$scope.shortcuts});
   };
 
   $scope.selectEndConfig = function(){
